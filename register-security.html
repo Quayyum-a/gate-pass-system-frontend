@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Registration - Gate Pass System</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="header__title">Security Registration</h1>
+    </header>
+    <main class="auth">
+      <div class="auth__card">
+        <form class="form" id="register-form">
+          <div class="form__group">
+            <label class="form__label" for="fullName">Full Name</label>
+            <input class="form__input" type="text" id="fullName" required aria-required="true">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="email">Email</label>
+            <input class="form__input" type="email" id="email" required aria-required="true">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="password">Password</label>
+            <input class="form__input" type="password" id="password" required aria-required="true">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="phone">Phone Number</label>
+            <input class="form__input" type="tel" id="phone" required aria-required="true">
+          </div>
+          <div class="form__group">
+            <label class="form__checkbox">
+              <input type="checkbox" id="terms" required aria-required="true">
+              I accept the <a href="#">Terms and Conditions</a>
+            </label>
+          </div>
+          <button class="button button--primary" type="submit">Register</button>
+        </form>
+        <p class="auth__signup">Already have an account? <a href="login.html">Login</a></p>
+        <div class="loader hidden" id="loader"></div>
+        <div class="error hidden" id="error-message"></div>
+      </div>
+    </main>
+  </div>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

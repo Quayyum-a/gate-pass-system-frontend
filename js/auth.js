@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         const endpoint =
-          type === "resident" ? "/api/resident/login" : "/api/security/login";
+          type === "resident" ? "/resident/login" : "/security/login";
         const data = await apiCall(endpoint, "POST", { email, password });
         setSession(data.user, type);
         window.location.href =
@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "resident/dashboard.html"
             : "security/dashboard.html";
       } catch (error) {
-        // Error handled in api.js
       }
     });
   }
@@ -68,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const isResident = window.location.pathname.includes("resident");
         const endpoint = isResident
-          ? "/api/resident/register"
-          : "/api/security/register";
+          ? "/resident/register"
+          : "/security/register";
         const data = await apiCall(endpoint, "POST", {
           fullName,
           email,

@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const token = document.getElementById("token").value;
 
       try {
-        const data = await apiCall("/api/security/verify/token", "POST", {
+        const data = await apiCall("/security/verify/token", "POST", {
           token,
         });
         const tokenResult = document.getElementById("token-result");
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let logs = [];
     const loadLogs = async (search = "") => {
       try {
-        const data = await apiCall("/api/security/visitor/logs", "POST", {
+        const data = await apiCall("/security/visitor/logs", "POST", {
           search,
         });
         logs = data.logs;

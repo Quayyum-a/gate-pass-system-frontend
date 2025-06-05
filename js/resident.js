@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const data = await apiCall("/api/resident/generate/code", "POST", {
+        const data = await apiCall("/resident/generate/code", "POST", {
           visitorName,
           visitorPhone,
           whomToSee,
@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("Token copied!");
         });
       } catch (error) {
-        // Error handled in api.js
       }
     });
   }
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (tokenTable) {
     const loadTokens = async (status = "all", search = "") => {
       try {
-        const data = await apiCall("/api/resident/find/code", "POST", {
+        const data = await apiCall("/resident/find/code", "POST", {
           status,
           search,
         });
@@ -170,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setSession({ ...user, fullName, phone, address }, "resident");
         alert("Profile updated successfully");
       } catch (error) {
-        // Error handled in api.js
+        
       }
     });
   }
@@ -190,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Password changed successfully");
         passwordForm.reset();
       } catch (error) {
-        // Error handled in api.js
+
       }
     });
   }

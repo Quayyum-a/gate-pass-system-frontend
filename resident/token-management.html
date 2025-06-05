@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Management - Gate Pass System</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="header__title">Token Management</h1>
+      <nav class="nav">
+        <a class="nav__link" href="dashboard.html">Dashboard</a>
+        <a class="nav__link" href="generate-token.html">Generate Token</a>
+        <a class="nav__link nav__link--active" href="token-management.html">Token Management</a>
+        <a class="nav__link" href="visitor-history.html">Visitor History</a>
+        <a class="nav__link" href="profile.html">Profile</a>
+        <button class="button button--secondary" id="logout">Logout</button>
+      </nav>
+    </header>
+    <main class="token-management">
+      <div class="filter">
+        <div class="form__group">
+          <label class="form__label" for="status-filter">Filter by Status</label>
+          <select class="form__input" id="status-filter">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="expired">Expired</option>
+          </select>
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="search">Search Tokens</label>
+          <input class="form__input" type="text" id="search" placeholder="Search by visitor name or token">
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Visitor Name</th>
+            <th>Phone</th>
+            <th>Whom to See</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="token-table"></tbody>
+      </table>
+      <div class="loader hidden" id="loader"></div>
+      <div class="error hidden" id="error-message"></div>
+    </main>
+  </div>
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/resident.js"></script>
+</body>
+</html>

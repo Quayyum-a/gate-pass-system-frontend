@@ -1,0 +1,72 @@
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.button--primary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.button--primary:hover {
+  background-color: #2980b9;
+}
+
+.button--secondary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.button--secondary:hover {
+  background-color: #c0392b;
+}
+
+.form__group {
+  margin-bottom: 20px;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form__input,
+.form__textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+}
+
+.form__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--secondary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+.error {
+  color: var(--accent-color);
+  text-align: center;
+  margin-top: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

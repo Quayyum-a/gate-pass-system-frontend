@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Token - Gate Pass System</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="header__title">Verify Token</h1>
+      <nav class="nav">
+        <a class="nav__link" href="dashboard.html">Dashboard</a>
+        <a class="nav__link nav__link--active" href="verify-token.html">Verify Token</a>
+        <a class="nav__link" href="visitor-logs.html">Visitor Logs</a>
+        <a class="nav__link" href="profile.html">Profile</a>
+        <button class="button button--secondary" id="logout">Logout</button>
+      </nav>
+    </header>
+    <main class="verify-token">
+      <form class="form" id="verify-token-form">
+        <div class="form__group">
+          <label class="form__label" for="token">Enter Token</label>
+          <input class="form__input" type="text" id="token" required aria-required="true">
+        </div>
+        <button class="button button--primary" type="submit">Verify</button>
+      </form>
+      <div class="token-result hidden" id="token-result">
+        <p>Visitor: <span id="visitor-name"></span></p>
+        <p>Phone: <span id="visitor-phone"></span></p>
+        <p>Whom to See: <span id="whom-to-see"></span></p>
+      </div>
+      <div class="loader hidden" id="loader"></div>
+      <div class="error hidden" id="error-message"></div>
+    </main>
+  </div>
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/security.js"></script>
+</body>
+</html>

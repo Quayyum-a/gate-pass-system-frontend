@@ -17,15 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const type = document.querySelector(".auth__toggle-button--active")
-        .dataset.type;
-
-      if (!validateEmail(email)) {
-        showError("Invalid email format");
-        return;
-      }
+      const submitBtn = loginForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
 
       try {
         const endpoint =
@@ -38,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
             : "security/dashboard.html";
       } catch (error) {
         showError(error.message || "Login failed. Please try again.");
+      } finally {
+        submitBtn.disabled = false;
       }
     });
   }
@@ -45,25 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (registerForm) {
     registerForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const fullName = document.getElementById("fullName").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const phone = document.getElementById("phone").value;
-      const address = document.getElementById("address")?.value;
-      const terms = document.getElementById("terms").checked;
-
-      if (!validateEmail(email)) {
-        showError("Invalid email format");
-        return;
-      }
-      if (!validatePhone(phone)) {
-        showError("Invalid phone number");
-        return;
-      }
-      if (!terms) {
-        showError("You must accept the terms");
-        return;
-      }
+      const submitBtn = registerForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
 
       try {
         const isResident = window.location.pathname.includes("resident");
@@ -89,6 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       } catch (error) {
         showError(error.message || "Registration failed. Please try again.");
+      }
+      finally {
+        submitBtn.disabled = false;
       }
     });
   }

@@ -14,15 +14,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (loginForm) {
+  f (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const submitBtn = loginForm.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
-
+  
+      const email = document.getElementById("email")?.value;
+      const password = document.getElementById("password")?.value;
+      const type = document.querySelector(".auth__toggle-button--active")?.dataset.type;
+  
+      if (!email || !password) {
+        showError("Email and password are required");
+        submitBtn.disabled = false;
+        return;
+      }
+      if (!validateEmail(email)) {
+        showError("Invalid email format");
+        submitBtn.disabled = false;
+        return;
+      }
+      if (!type) {
+        showError("Please select a user type (Resident or Security)");
+        submitBtn.disabled = false;
+        return;
+      }
+  
       try {
-        const endpoint =
-          type === "resident" ? "/resident/login" : "/security/login";
+        const endpoint = type === "resident" ? "/resident/login" : "/security/login";
         const data = await apiCall(endpoint, "POST", { email, password });
         setSession(data.user, type);
         window.location.href =
@@ -30,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "resident/dashboard.html"
             : "security/dashboard.html";
       } catch (error) {
-        showError(error.message || "Login failed. Please try again.");
+        showError(error.message || "Login failed. Please check your credentials and try again.");
       } finally {
         submitBtn.disabled = false;
       }

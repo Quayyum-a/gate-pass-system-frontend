@@ -6,6 +6,7 @@ const publicEndpoints = [
   "/resident/register",
   "/security/register",
 ];
+
 async function apiCall(endpoint, method, data) {
   try {
     showLoader();
@@ -16,14 +17,30 @@ async function apiCall(endpoint, method, data) {
     if (session?.user?.token && !publicEndpoints.includes(endpoint)) {
       headers["Authorization"] = `Bearer ${session.user.token}`;
     }
-    const response = await fetch(`${BASE_URL}${endpoint}`, {
+
+    let url = `${BASE_URL}${endpoint}`;
+    let body = null;
+
+    // Handle login endpoints with query parameters
+    if (["/resident/login", "/security/login"].includes(endpoint)) {
+      const params = new URLSearchParams(data).toString();
+      url += `?${params}`;
+    } else {
+      body = JSON.stringify(data);
+    }
+
+    const response = await fetch(url, {
       method,
       headers,
-      body: JSON.stringify(data),
+      body,
     });
     const result = await response.json();
     hideLoader();
     if (!response.ok) {
+      console.error(
+        `API Error: ${response.status} ${response.statusText}`,
+        result
+      ); // Log for debugging
       throw new Error(result.message || "API request failed");
     }
     return result;

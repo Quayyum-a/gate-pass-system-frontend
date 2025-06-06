@@ -62,6 +62,34 @@ document.addEventListener("DOMContentLoaded", () => {
       const submitBtn = registerForm.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
 
+      const fullName = document.getElementById("fullName")?.value;
+      const email = document.getElementById("email")?.value;
+      const password = document.getElementById("password")?.value;
+      const phone = document.getElementById("phone")?.value;
+      const address = document.getElementById("address")?.value;
+      const terms = document.getElementById("terms")?.checked;
+
+      if (!fullName || !email || !password || !phone) {
+        showError("All fields are required");
+        submitBtn.disabled = false;
+        return;
+      }
+      if (!validateEmail(email)) {
+        showError("Invalid email format");
+        submitBtn.disabled = false;
+        return;
+      }
+      if (!validatePhone(phone)) {
+        showError("Invalid phone number");
+        submitBtn.disabled = false;
+        return;
+      }
+      if (!terms) {
+        showError("You must accept the terms");
+        submitBtn.disabled = false;
+        return;
+      }
+
       try {
         const isResident = window.location.pathname.includes("resident");
         const endpoint = isResident
@@ -74,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
           phone,
           ...(isResident && { address }),
         };
-        console.log("Request Body:", data);
         const response = await apiCall(endpoint, "POST", data);
         if (response && response.user) {
           setSession(response.user, isResident ? "resident" : "security");
@@ -86,8 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       } catch (error) {
         showError(error.message || "Registration failed. Please try again.");
-      }
-      finally {
+      } finally {
         submitBtn.disabled = false;
       }
     });

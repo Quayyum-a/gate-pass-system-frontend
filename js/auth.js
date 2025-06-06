@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "resident/dashboard.html"
             : "security/dashboard.html";
       } catch (error) {
+        showError(error.message || "Login failed. Please try again.");
       }
     });
   }

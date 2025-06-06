@@ -85,10 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "resident/dashboard.html"
             : "security/dashboard.html";
         } else {
-          console.error("Invalid response from API");
+          showError("Invalid response from API");
         }
       } catch (error) {
-        console.error(error);
+        showError(error.message || "Registration failed. Please try again.");
       }
     });
   }

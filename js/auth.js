@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  f (loginForm) {
+  if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const submitBtn = loginForm.querySelector('button[type="submit"]');

@@ -30,17 +30,20 @@ function setSession(user, type) {
 }
 
 function getSession() {
-  const storedSession = localStorage.getItem("session");
-  if (storedSession) {
+  const storedUser = localStorage.getItem("user");
+  const userType = localStorage.getItem("userType");
+  if (storedUser) {
     try {
-      return JSON.parse(storedSession);
+      return {
+        user: JSON.parse(storedUser),
+        userType,
+      };
     } catch (error) {
-      console.error("Error parsing session:", error);
+      console.error("Error parsing user session:", error);
       return null;
     }
-  } else {
-    return null;
   }
+  return null;
 }
 
 function clearSession() {

@@ -69,19 +69,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const endpoint = isResident
           ? "/resident/register"
           : "/security/register";
-        const data = await apiCall(endpoint, "POST", {
+        const data = {
           fullName,
           email,
           password,
           phone,
           ...(isResident && { address }),
-        });
-        setSession(data.user, isResident ? "resident" : "security");
-        window.location.href = isResident
-          ? "resident/dashboard.html"
-          : "security/dashboard.html";
+        };
+        console.log("Request Body:", data);
+        const response = await apiCall(endpoint, "POST", data);
+        if (response && response.user) {
+          setSession(response.user, isResident ? "resident" : "security");
+          window.location.href = isResident
+            ? "resident/dashboard.html"
+            : "security/dashboard.html";
+        } else {
+          console.error("Invalid response from API");
+        }
       } catch (error) {
-        // Error handled in api.js
+        console.error(error);
       }
     });
   }
